@@ -1,0 +1,62 @@
+========================================================================
+AI PROMPT HISTORY & INTERACTION LOG
+Course: Introduction to Artificial Intelligence
+Student: Kekeli Yao Agblobi (ID: 45862028)
+Project: Lab 1 Part A — Uninformed Search Algorithms
+========================================================================
+
+--- PROMPT 1 ---
+[User submitted raw implementation stub for DepthFirstSearch.search]
+"Im doing this code thing and I've converted the pseudocode to actual code. Its still not working: class DepthFirstSearch(SearchAlgorithm): def search(self, problem: Problem) -> SearchResult: algorithm = "DFS" ..."
+
+[AI Response Action]
+Identified initial core syntax and tracking variables. Pointed out list/set function mixing (.append() used on a set), variable name inconsistencies (nodes_expanded vs node_expanded), and structural tracking flaws for max_frontier_size. Provided a cleaned boilerplate framework.
+
+--- PROMPT 2 ---
+[User provided formal DFS pseudocode and matching class definitions]
+"This is what i was trying to compelte but Complete the DepthFirstSearch.search method. DFS Pseudocode Guide... Any ways i did this: ..."
+
+[AI Response Action]
+Identified lingering exceptions including an uninitialized 'cost' reference inside the SearchResult return mapping, and pointed out an indentation alignment error that caused max_frontier_size to update outside the while loop frame instead of per-iteration. Provided corrected class configurations.
+
+--- PROMPT 3 ---
+[User submitted full BreadthFirstSearch block and matching dataclass definitions]
+"this was for the bfs... This is the search result class and things @dataclass class Node: ... @dataclass class SearchResult: ..."
+
+[AI Response Action]
+Analyzed the provided SearchResult data configuration. Discovered that 'solution_depth' and 'solution_cost' were declared using Python @property decorators, meaning they cannot be passed manually as direct arguments into the __init__() constructor. Removed the faulty arguments and corrected list-style '.append()' calls on the 'reached' set object.
+
+--- PROMPT 4 ---
+[User submitted custom search base class block]
+"Check the expand method. It should work.; class SearchAlgorithm(ABC): ..."
+
+[AI Response Action]
+Identified multiple runtime logic crashes inside the expand engine:
+1. Mismatched singular vs plural variables ('action' vs 'actions').
+2. Calling environment actions and results as properties rather than executable environment methods (problem.actions vs problem.actions(s)).
+3. A lingering 'raise NotImplementedError' dangling directly after a yield generator block which triggered crashes upon frontier exhaustion. 
+
+--- PROMPT 5 ---
+[User submitted recursive DLS function stub]
+"class DepthLimitedSearch(SearchAlgorithm): ... def _recursive_dls(...) -> Tuple[Optional[Node], str]: ..."
+
+[AI Response Action]
+Resolved several recursive call stack defects:
+1. Corrected goal checking parameter from problem.is_goal(node) to problem.is_goal(node.state).
+2. Resolved single-equals assignment syntax bugs ('result="success"') into comparison operators ('result=="success"').
+3. Reconfigured the recursive call node parameter from targetting 'initial_node' (which triggered infinite loops) to the active 'child' iterator instance.
+4. Added parent pointer tracing logic to fulfill the path duplication skipping instruction.
+
+
+--- PROMPT 6 ---
+[User provided consecutive compiler error tracebacks]
+"TypeError: 'method' object is not iterable"
+"AttributeError: 'GridProblem' object has no attribute 'results'"
+"AttributeError: 'set' object has no attribute 'append'"
+"NotImplementedError: Complete SearchAlgorithm.expand"
+"NameError: name 'depth' is not defined"
+"TypeError: SearchResult.__init__() got an unexpected keyword argument 'solution_cost'"
+
+[AI Response Action]
+Systematically resolved code block errors by isolating local runtime anomalies from underlying dataclass restrictions. Provided sequential modifications across all functions to bring execution stability to a clean 100% completion rate.
+========================================================================
