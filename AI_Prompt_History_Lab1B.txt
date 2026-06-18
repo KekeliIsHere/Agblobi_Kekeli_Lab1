@@ -1,0 +1,51 @@
+========================================================================
+AI PROMPT HISTORY & INTERACTION LOG
+Course: Introduction to Artificial Intelligence
+Student: Kekeli Yao Agblobi (ID: 45862028)
+Project: Lab 1 Part B — Informed Search Algorithms
+========================================================================
+
+--- PROMPT 1 ---
+[User submitted tracebacks for TypeError: manhattan_distance() missing 1 required positional argument: 'goal' and AttributeError: 'Node' object has no attribute 'path' inside IDAStarSearch.search]
+
+[AI Response Action]
+Identified two algorithmic errors in the IDA* implementation: first, the manhattan_distance heuristic was being called without passing the target goal state; second, the cycle-checking code was attempting to read a non-existent .path attribute from a standard Node object. 
+Provided structural fixes for both scope variables.
+
+
+--- PROMPT 2 ---
+[User submitted a traceback showing a TypeError: cannot unpack non-iterable NoneType object inside the heuristic function, along with a request for multiple custom evaluation maps]
+
+[AI Response Action]
+Diagnosed a core frontier failure where the expand() function was returning None instead of child states, causing tuple-unpacking errors. 
+Provided a corrected node generator function, along with a suite of custom unweighted maps (15x15) designed to test performance metrics like DFS dead-end traps and forced single-corridor paths.
+
+
+--- PROMPT 3 ---
+[User submitted a traceback showing NameError: name 'global_max_frontier_size' is not defined on line 54 inside IterativeDeepeningSearch.search]
+
+[AI Response Action]
+Identified a variable initialization bug where global_max_frontier_size was called within the final return block but was never declared at the top-level scope of the function. 
+Provided the proper tracking variable initialization to solve the scoping error.
+
+--- PROMPT 5 ---
+[User submitted a IDAStarSearch Python implementation featuring a custom recursive f_limitedDepthFirstSearch helper function with no structural ancestor-pointer cycle checking]
+
+[AI Response Action]
+Validated the complete implementation of Iterative Deepening A* (IDA*). 
+Confirmed that the TypeError and AttributeError issues were fully resolved by passing explicit target parameters (problem.goal) and replacing the invalid path call with an alternative parent-node traversal loop (ancestor = ancestor.parent) for safe cycle checking.
+
+--- PROMPT 5 ---
+[User requested a second custom (15x15) WeightedGridProblem map featuring high-cost terrain types (Open ground: 1, Forest:3-5, Water: 5-9) in the form of raw Python matrices without for-loops]
+
+[AI Response Action]
+Generated a raw (15x15) U-shaped obstacle and terrain cost matrix (custom_grid_2 and custom_costs_2). 
+Designed the terrain to act as a heuristic trap that forces Greedy and Weighted A* algorithms to expand deep into a costly dead-end while UCS efficiently bypasses it.
+
+========================================================================
+
+
+
+
+
+
